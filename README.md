@@ -1,1 +1,2 @@
-# skill_swap_template
+# Skill Swap Platform
+Instructions to run the app.
