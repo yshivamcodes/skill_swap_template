@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head><title>Register</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"></head>
+<body>
+    <h2>Register</h2>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <p>{{ form.email.label }} {{ form.email() }}</p>
+        <p>{{ form.name.label }} {{ form.name() }}</p>
+        <p>{{ form.password.label }} {{ form.password() }}</p>
+        <p>{{ form.confirm.label }} {{ form.confirm() }}</p>
+        <p>{{ form.submit() }}</p>
+    </form>
+    <a href="{{ url_for('login') }}">Already have an account? Login</a>
+</body>
+</html>

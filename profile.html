@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Profile - Skill Swap</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h2>Edit Profile</h2>
+
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <p>{{ form.name.label }} {{ form.name() }}</p>
+        <p>{{ form.location.label }} {{ form.location() }}</p>
+        <p>{{ form.skills_offered.label }} {{ form.skills_offered() }}</p>
+        <p>{{ form.skills_wanted.label }} {{ form.skills_wanted() }}</p>
+        <p>{{ form.availability.label }} {{ form.availability() }}</p>
+        <p>{{ form.is_public() }} {{ form.is_public.label }}</p>
+        <p>{{ form.submit() }}</p>
+    </form>
+
+    <div style="text-align:center;">
+        <a href="{{ url_for('index') }}">Back to Home</a>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

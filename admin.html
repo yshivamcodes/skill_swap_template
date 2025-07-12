@@ -1,0 +1,8 @@
+# Inside app.py or a separate admin.py
+from flask_admin import Admin
+from flask_admin.contrib.sqla import ModelView
+
+admin = Admin(app, name='Admin Panel')
+admin.add_view(ModelView(User, db.session))
+admin.add_view(ModelView(SwapRequest, db.session))
+admin.add_view(ModelView(Feedback, db.session))

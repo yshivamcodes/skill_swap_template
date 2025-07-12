@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Browse Skills - Skill Swap</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h2>Browse Users by Skill</h2>
+
+    <form method="GET" action="{{ url_for('browse') }}">
+        <input type="text" name="skill" placeholder="Enter skill (e.g., Photoshop)">
+        <button type="submit">Search</button>
+    </form>
+
+    {% if users %}
+        <ul>
+        {% for user in users %}
+            <li>
+                <strong>{{ user.name }}</strong> ({{ user.location or 'No location' }})<br>
+                <strong>Offers:</strong> {{ user.skills_offered }}<br>
+                <strong>Wants:</strong> {{ user.skills_wanted }}<br>
+                <strong>Availability:</strong> {{ user.availability }}<br>
+                <a href="{{ url_for('swap_request', user_id=user.id) }}">Request Swap</a>
+            </li>
+        {% endfor %}
+        </ul>
+    {% elif request.args.get('skill') %}
+        <p style="text-align:center;">No users found with that skill.</p>
+    {% endif %}
+
+    <div style="text-align:center;">
+        <a href="{{ url_for('index') }}">Back to Home</a>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

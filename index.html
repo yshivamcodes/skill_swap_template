@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Skill Swap Platform</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">SkillSwap</div>
+      <ul class="nav-links">
+        {% if current_user.is_authenticated %}
+          <li><a href="{{ url_for('profile') }}">Profile</a></li>
+          <li><a href="{{ url_for('my_swaps') }}">My Swaps</a></li>
+          <li><a href="{{ url_for('browse') }}">Browse</a></li>
+          <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        {% else %}
+          <li><a href="{{ url_for('login') }}">Login</a></li>
+          <li><a href="{{ url_for('register') }}">Register</a></li>
+        {% endif %}
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Welcome to Skill Swap</h1>
+      <p>Exchange skills with others in your community. Learn something new or teach what you know!</p>
+      {% if not current_user.is_authenticated %}
+        <a href="{{ url_for('register') }}" class="btn">Get Started</a>
+      {% endif %}
+    </section>
+
+    <section class="features">
+      <div class="feature">
+        <h2>📘 List Your Skills</h2>
+        <p>Add skills you're willing to teach or help with.</p>
+      </div>
+      <div class="feature">
+        <h2>🔍 Find Skills You Want</h2>
+        <p>Search and connect with people who offer the skills you're looking for.</p>
+      </div>
+      <div class="feature">
+        <h2>🔄 Swap & Grow</h2>
+        <p>Request swaps, chat, and give feedback after your exchange.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Skill Swap. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

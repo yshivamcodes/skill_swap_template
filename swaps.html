@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Swaps - Skill Swap</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h2>My Swap Requests</h2>
+
+    <h3>Sent Requests</h3>
+    <ul>
+        {% for swap in sent %}
+            <li>
+                To: {{ swap.receiver.name }} | Status: {{ swap.status }}
+                {% if swap.status == 'pending' %}
+                    <a href="{{ url_for('delete_swap', swap_id=swap.id) }}">Cancel</a>
+                {% endif %}
+            </li>
+        {% else %}
+            <p style="text-align:center;">No sent requests yet.</p>
+        {% endfor %}
+    </ul>
+
+    <h3>Received Requests</h3>
+    <ul>
+        {% for swap in received %}
+            <li>
+                From: {{ swap.sender.name }} | Status: {{ swap.status }}
+                {% if swap.status == 'pending' %}
+                    <a href="{{ url_for('accept_swap', swap_id=swap.id) }}">Accept</a>
+                {% endif %}
+            </li>
+        {% else %}
+            <p style="text-align:center;">No received requests yet.</p>
+        {% endfor %}
+    </ul>
+
+    <div style="text-align:center;">
+        <a href="{{ url_for('index') }}">Back to Home</a>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
